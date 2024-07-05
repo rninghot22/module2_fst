@@ -1,0 +1,9 @@
+---
+- hosts: local
+  become: true
+  tasks: 
+    - name: add user
+      user: 
+        name: activityUser1
+        state: present
+        home: /home/anirbandutta

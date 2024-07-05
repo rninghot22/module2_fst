@@ -1,0 +1,30 @@
+--- 
+- name: set up webserver
+  hosts: server
+  become: true
+  tasks: 
+    - name: ensure nginx is at the latest version
+      apt:
+        name: nginx
+        state: latest
+    - name: start nginx
+      service: 
+        name: nginx
+        state: started
+        enabled: yes  # if you want to also enable nginx
+    - name: Install firewalld
+      ansible.builtin.package:
+        name: firewalld
+        state: present
+    - name: Start and enable firewalld
+      ansible.builtin.systemd:
+        name: firewalld
+        state: started
+        enabled: yes
+    - name: Allow incoming HTTP and HTTPS traffic
+      ansible.posix.firewalld:
+        port: 8080/tcp
+        zone: public
+        state: enabled
+        immediate: yes
+        permanent: yes
