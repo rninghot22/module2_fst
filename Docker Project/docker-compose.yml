@@ -19,7 +19,7 @@ services:
   # API Service
   api:
       build: ./server
-      image: "anshulchandrol/complex_api"
+      image: "fdk1/complex_api"
       environment:
           - REDIS_HOST=redis_db
           - REDIS_PORT=3679
@@ -32,11 +32,11 @@ services:
   # Worker service
   worker:
       build: ./server
-      image: "anshulchandrol/complex_worker"
+      image: "fdk1/complex_worker"
       environment:
           - REDIS_HOST=redis_db
           - REDIS_PORT=6379
   # Frontend
   client:
       build: ./client
-      image: "anshulchandrol/complex_client"  
+      image: "fdk1/complex_client"  
